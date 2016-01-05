@@ -1,0 +1,29 @@
+{
+  "name": "cards-against-humanity",
+  "description": "cards against humanity online game",
+  "main": "app.js",
+  "authors": [
+    "dentia",
+    "Stev3n",
+    "vassildinev"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.1.4",
+    "toastr": "~2.1.2"
+  }
+}
