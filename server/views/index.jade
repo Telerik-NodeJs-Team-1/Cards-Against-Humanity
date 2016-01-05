@@ -1,0 +1,18 @@
+extends includes/layout
+block main-content
+    header.nav.navbar-default.navbar-fixed-top
+        .container
+            .navbar-header
+                a.navbar-brand(href="/") CAH
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="/") Home
+                div(ng-include="'partials/account/login'")
+
+    section
+        div(ng-view)
+
+    footer
+        p.text-center
+            | &copy; Team 1 - TA 2016
