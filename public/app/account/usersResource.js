@@ -1,9 +1,15 @@
-app.factory('UsersResource', function($resource) {
-    var UsersResource = $resource('/api/users/:id', {_id:'@id'}, { update: {method: 'PUT', isArray: false}});
+(function() {
+    "use strict";
 
-    UsersResource.prototype.isAdmin = function() {
-        return this.roles && this.roles.indexOf('admin') > -1;
-    };
+    angular
+        .module('app')
+        .factory('UsersResource', function ($resource) {
+        var UsersResource = $resource('/api/users/:id', {_id: '@id'}, {update: {method: 'PUT', isArray: false}});
 
-    return UsersResource;
-});
+        UsersResource.prototype.isAdmin = function () {
+            return this.roles && this.roles.indexOf('admin') > -1;
+        };
+
+        return UsersResource;
+    });
+}());
