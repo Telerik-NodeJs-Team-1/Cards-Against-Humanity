@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
-    user = require('../models/User');
+    user = require('../models/User'),
+    whiteCard = require('../models/WhiteCard'),
+    blackCard = require('../models/BlackCard');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -19,4 +21,6 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
+    whiteCard.seedInitialWhiteCards();
+    blackCard.seedInitialBlackCards();
 };
