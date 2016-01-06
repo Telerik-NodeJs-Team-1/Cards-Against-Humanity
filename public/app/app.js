@@ -1,10 +1,18 @@
 (function() {
-    var app = angular.module('app', ['ngResource', 'ngRoute']).value('toastr', toastr);
-    var CONTROLLER_AS_VIEW_MODEL = 'vm';
+    "use strict";
 
-    app.config(function ($routeProvider, $locationProvider) {
+    var run = function run($rootScope, $location) {
+        $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
+            if (rejection === 'not authorized') {
+                $location.path('/');
+            }
+        })
+    };
+
+    var config = function config($routeProvider, $locationProvider) {
+        var CONTROLLER_AS_VIEW_MODEL = 'vm';
+
         $locationProvider.html5Mode(true);
-
         var routeUserChecks = {
             adminRole: {
                 authenticate: function (auth) {
@@ -41,13 +49,12 @@
                 controllerAs: CONTROLLER_AS_VIEW_MODEL,
                 resolve: routeUserChecks.adminRole
             })
-    });
+    };
 
-    app.run(function ($rootScope, $location) {
-        $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
-            if (rejection === 'not authorized') {
-                $location.path('/');
-            }
-        })
-    });
+    angular.module('cardsAgainstHumanity.services', []);
+    angular.module('cardsAgainstHumanity.controllers', ['cardsAgainstHumanity.services']);
+    angular.module('cardsAgainstHumanity', ['ngResource', 'ngRoute', 'cardsAgainstHumanity.controllers'])
+        .value('toastr', toastr)
+        .config(['$routeProvider','$locationProvider',config])
+        .run(['$rootScope', '$location', run]);
 }());

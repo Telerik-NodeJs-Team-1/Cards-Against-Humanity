@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.services')
         .factory('notifier', function (toastr) {
         return {
             success: function (msg) {

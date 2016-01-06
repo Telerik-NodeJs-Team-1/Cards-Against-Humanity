@@ -6,6 +6,6 @@
         vm.greeting = 'Hi from Team 1';
     };
 
-    angular.module('app')
+    angular.module('cardsAgainstHumanity.controllers')
         .controller('HomePageController', homePageController);
 }());

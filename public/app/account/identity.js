@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.services')
         .factory('identity', function ($window, UsersResource) {
         var user;
         if ($window.bootstrappedUserObject) {

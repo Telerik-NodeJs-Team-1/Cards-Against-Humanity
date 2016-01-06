@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.controllers')
         .controller('SignUpCtrl', function ($scope, $location, auth, notifier) {
         $scope.signup = function (user) {
             auth.signup(user).then(function () {

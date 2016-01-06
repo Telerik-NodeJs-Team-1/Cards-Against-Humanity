@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.controllers')
         .controller('ProfileCtrl', function ($scope, $location, auth, identity) {
         $scope.user = {
             firstName: identity.currentUser.firstName,

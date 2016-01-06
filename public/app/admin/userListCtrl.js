@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.controllers')
         .controller('UserListCtrl', function ($scope, UsersResource) {
         $scope.users = UsersResource.query();
     });

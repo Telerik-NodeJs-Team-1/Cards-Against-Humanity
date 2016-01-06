@@ -28,6 +28,6 @@
     };
 
     angular
-        .module('app')
+        .module('cardsAgainstHumanity.controllers')
         .controller('LoginCtrl', loginController);
 }());
