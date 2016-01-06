@@ -5,12 +5,12 @@ var rootPath = path.normalize(__dirname + '/../../');
 module.exports = {
     development: {
         rootPath: rootPath,
-        db: 'mongodb://localhost/cards-against-humanity',
+        db: 'mongodb://taTeam1:taTeam1@ds039115.mongolab.com:39115/cards-against-humanity', /*'mongodb://localhost/cards-against-humanity',*/
         port: process.env.PORT || 3030
     },
     production: {
         rootPath: rootPath,
-        db: '',
+        db: 'mongodb://taTeam1:taTeam1@ds039115.mongolab.com:39115/cards-against-humanity',
         port: process.env.PORT || 3030
     }
 };
