@@ -22,6 +22,7 @@
                     $scope.user.username = '';
                     $scope.user.password = '';
                 }
+
                 $location.path('/');
             })
         }

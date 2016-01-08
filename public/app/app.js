@@ -4,7 +4,7 @@
     var run = function run($rootScope, $location) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
-                $location.path('/');
+                $location.path('/unauthorized');
             }
         })
     };
@@ -32,6 +32,18 @@
                 controller: 'HomePageController',
                 controllerAs: CONTROLLER_AS_VIEW_MODEL
             })
+            .when('/games/create', {
+                templateUrl: '/partials/game/create-game',
+                controller: 'CreateGameController',
+                controllerAs: CONTROLLER_AS_VIEW_MODEL,
+                resolve: routeUserChecks.authenticated
+            })
+            .when('/games/view', {
+                templateUrl: '/partials/games/view-available-games',
+                controller: 'ViewAvailableGamesController',
+                controllerAs: CONTROLLER_AS_VIEW_MODEL,
+                resolve: routeUserChecks.authenticated
+            })
             .when('/signup', {
                 templateUrl: '/partials/account/signup',
                 controller: 'SignUpCtrl',
@@ -49,6 +61,13 @@
                 controllerAs: CONTROLLER_AS_VIEW_MODEL,
                 resolve: routeUserChecks.adminRole
             })
+            .when('/notfound', {
+                templateUrl: '/partials/common/not-found'
+            })
+            .when('/unauthorized', {
+                templateUrl: '/partials/common/unauthorized'
+            })
+            .otherwise({redirectTo: '/notfound'})
     };
 
     angular.module('cardsAgainstHumanity.services', []);

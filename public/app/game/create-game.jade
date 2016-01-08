@@ -1,0 +1,12 @@
+.create-game-container
+    form.form-horizontal
+        fieldset
+            legend Create new game
+            .form-group
+                label.col-lg-2.control-label(for='inputName') Name
+                .col-lg-10
+                    input#inputName.form-control(type='text', placeholder='Name' ng-required="true" ng-model="vm.game.name" ng-init="vm.game.name='NewGame1'")
+                label.col-lg-2.control-label(for='inputPlayersNumber') Players
+                .col-lg-10
+                    input#inputPlayersNumber.form-control(type='number' min="4" max="10" ng-model="vm.game.playersNumber" ng-init="vm.game.playersNumber=4")
+            a(class='btn btn-default' ng-click="vm.createNewGame(vm.game)") Create

@@ -13,10 +13,8 @@ module.exports = function(app) {
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
 
-    app.get('/api/*', function(req, res) {
-        res.status(404);
-        res.end();
-    });
+    app.post('/api/games', controllers.games.create);
+    app.get('/api/games', controllers.games.getAll);
 
     app.get('*', function(req, res) {
         res.render('index', {currentUser: req.user});
