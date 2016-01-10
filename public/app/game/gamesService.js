@@ -1,27 +1,22 @@
 (function(){
     'use strict';
 
-    var gamesService = function gamesService($http, $location, $q){
+    var gamesService = function gamesService($location, data){
         var createNewGame = function createNewGame(game){
-            var deferred = $q.defer();
+            return data.post('/api/games', {ContentType: 'application/json'}, game);
+        };
 
-            $http.post('/api/games', game, {ContentType: 'application/json'})
-                .then(function(res){
-                    $location.path('/');
-                    deferred.resolve(res.data);
-                }, function(res){
-                    deferred.reject(res);
-                });
-
-            return deferred.promise;
+        var getAllGames = function getAllGames(){
+            return data.get('/api/games');
         };
 
         return {
-            createNewGame: createNewGame
+            createNewGame: createNewGame,
+            getAllGames: getAllGames
         }
     };
 
     angular
         .module('cardsAgainstHumanity.services')
-        .factory('games', gamesService)
+        .factory('games', ['$location', 'data', gamesService]);
 }());

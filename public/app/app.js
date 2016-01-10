@@ -39,7 +39,7 @@
                 resolve: routeUserChecks.authenticated
             })
             .when('/games/view', {
-                templateUrl: '/partials/games/view-available-games',
+                templateUrl: '/partials/game/view-available-games',
                 controller: 'ViewAvailableGamesController',
                 controllerAs: CONTROLLER_AS_VIEW_MODEL,
                 resolve: routeUserChecks.authenticated
