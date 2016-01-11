@@ -6,12 +6,19 @@
 
         if(!identity.isAuthenticated()){
             $location.path('/unauthorized');
+            return;
         }
 
         games
             .getAllGames()
             .then(function(resp){
-                vm.games = resp.data;
+                vm.games = Enumerable
+                        .From(resp.data)
+                        .Where(function(game){
+                            return game.creator !== identity.currentUser.username;
+                        })
+                        .ToArray();
+
             }, function(){
                 notifier.error('Unable to create game');
             });

@@ -1,1 +1,1 @@
-<div class="view-gmes-container"><div ng-repeat="game in vm.games"><h1>{{ game.name }}</h1></div></div>
+<div ng-show="vm.games.length&gt;0" class="view-gmes-container"><div ng-repeat="game in vm.games"><div class="jumbotron centered-div text-center row"><strong style="font-size:25px" class="col-lg-5">{{game.name}}</strong><a ng-click="vm.join()" class="col-lg-5 btn btn-sm btn-primary">Join</a></div></div></div><div ng-hide="vm.games.length&gt;0" class="text-center"><h3>There are no games for you to join right now. Come back later.</h3></div>

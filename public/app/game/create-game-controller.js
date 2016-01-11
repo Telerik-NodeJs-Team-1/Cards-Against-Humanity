@@ -6,9 +6,12 @@
 
         if(!identity.isAuthenticated()){
             $location.path('/unauthorized');
+            return;
         }
 
         vm.createNewGame = function createNewGame(game){
+            var gameToCreate = game;
+            gameToCreate.creator = identity.currentUser.username;
             games
                 .createNewGame(game)
                 .then(function(){
