@@ -44,6 +44,12 @@
                 controllerAs: CONTROLLER_AS_VIEW_MODEL,
                 resolve: routeUserChecks.authenticated
             })
+            .when('/games/details/:id', {
+                templateUrl: '/partials/game/game-details',
+                controller: 'GameDetailsPageController',
+                controllerAs: CONTROLLER_AS_VIEW_MODEL,
+                resolve: routeUserChecks.authenticated
+            })
             .when('/signup', {
                 templateUrl: '/partials/account/signup',
                 controller: 'SignUpCtrl',

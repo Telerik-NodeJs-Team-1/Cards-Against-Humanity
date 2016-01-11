@@ -10,9 +10,14 @@
             return data.get('/api/games');
         };
 
+        var getById = function getById(id){
+            return data.get('/api/games/' + id);
+        };
+
         return {
             createNewGame: createNewGame,
-            getAllGames: getAllGames
+            getAllGames: getAllGames,
+            getById: getById
         }
     };
 

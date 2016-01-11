@@ -15,6 +15,7 @@ module.exports = function(app) {
 
     app.post('/api/games', controllers.games.create);
     app.get('/api/games', controllers.games.getAll);
+    app.get('/api/games/:id', controllers.games.getById);
 
     app.get('*', function(req, res) {
         res.render('index', {currentUser: req.user});

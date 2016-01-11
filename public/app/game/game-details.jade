@@ -1,0 +1,10 @@
+.clock-container.text-center
+    h1 Round {{vm.game.currentRound}}
+    #clockdiv
+        div
+            span.seconds {{vm.game.timeLeftFromCurrentRound}}
+            .smalltext Seconds
+.black-card-container
+    div {{vm.game.currentBlackCard}}
+.white-card-container(ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
+br

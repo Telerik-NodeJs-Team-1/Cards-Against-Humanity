@@ -7,7 +7,8 @@ var gameSchema = new mongoose.Schema({
     currentBlackCard: String,
     currentWhiteCards: [String],
     currentCzar: String,
-    currentRound: Number
+    currentRound: Number,
+    timeLeftFromCurrentRound: Number
 });
 
 var Game = mongoose.model('Game', gameSchema);
