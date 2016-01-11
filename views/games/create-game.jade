@@ -1,0 +1,18 @@
+extends ../layout
+
+.create-game-container
+    form.form-horizontal
+        fieldset
+            legend
+                strong Create new game
+            .form-group
+                label.col-lg-3.control-label(for='inputName') Name
+                .col-lg-9
+                    input#inputName.form-control(type='text', placeholder='Name' ng-required="true" ng-model="vm.game.name" ng-init="vm.game.name='NewGame1'")
+                br
+                label.col-lg-3.control-label(for='inputPlayersNumber') Max Players
+                .col-lg-9
+                    input#inputPlayersNumber.form-control(type='number' min="4" max="10" ng-model="vm.game.playersNumber" ng-init="vm.game.playersNumber=4")
+            hr
+            div(style="margin-left:20px")
+                a(class='btn btn-default' ng-click="vm.createNewGame(vm.game)") Create
