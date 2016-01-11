@@ -1,0 +1,24 @@
+{
+  "name": "cards-against-humanity",
+  "version": "1.0.0",
+  "description": "cards against humanity online game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dentia, Stev3n, vassildinev",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.0",
+    "crypto": "0.0.3",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "jade": "^1.11.0",
+    "kerberos": "0.0.17",
+    "mongoose": "^4.3.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "stylus": "^0.53.0"
+  }
+}
