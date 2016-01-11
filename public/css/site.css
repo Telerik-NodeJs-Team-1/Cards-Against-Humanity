@@ -19,7 +19,12 @@ footer p {
   padding-top: 10px;
 }
 .create-game-container {
-  width: 300px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.centered-div {
+  width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
