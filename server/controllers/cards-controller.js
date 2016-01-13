@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose'),
     BlackCard = mongoose.model('BlackCard'),
-    WhiteCard = mongoose.model('WhiteCard');
+    WhiteCard = mongoose.model('WhiteCard'),
+    PendingCard = mongoose.model('PendingCard');
 
 var getBlackCardById = function(req, res){
   BlackCard.findById(req.params.id, function(error, card){
@@ -19,7 +20,9 @@ var getBlackCardById = function(req, res){
 };
 
 var createCard = function createGame(req, res) {
-    console.log(req.body);
+    var pendingCard = req.body;
+
+    PendingCard.create(pendingCard);
 
     res.status(200);
     res.end();

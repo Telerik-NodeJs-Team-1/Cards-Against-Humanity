@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
     user = require('../models/user-model'),
     whiteCard = require('../models/white-card-model'),
     blackCard = require('../models/black-card-model'),
+    pendingCard = require('../models/pending-cards-model'),
     game = require('../models/game-model');
 
 module.exports = function(config) {
@@ -24,4 +25,5 @@ module.exports = function(config) {
     user.seedInitialUsers();
     whiteCard.seedInitialWhiteCards();
     blackCard.seedInitialBlackCards();
+    pendingCard.getPendingCardCount();
 };

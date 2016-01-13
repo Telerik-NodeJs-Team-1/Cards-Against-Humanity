@@ -15,13 +15,17 @@ block main-content
                         .col-md-10
                             .radio
                                 label
-                                    input#white(type="radio", name="cardType", value="white" checked="checked")
+                                    input#white(type="radio", name="cardType", value="white" checked="checked" ng-model="vm.checked" required="required")
                                     | White
                             .radio
                                 label
-                                    input#black(type="radio", name="cardType", value="black")
+                                    input#black(type="radio", name="cardType", value="black", ng-model="vm.checked")
                                     | Black
                     .div(ng-controller="CardsController as vm") {{vm.meow}}
+                    .form-group(ng-show="vm.checked == 'black'")
+                        label.col-lg-2.control-label(for='blankSpaces') Blank spaces
+                        .col-lg-10
+                            input#blankSpaces.form-control(type='number', placeholder='Blank spaces', value="1", name="blankSpaces")
                     .pull-right(style="margin: 5px")
                         button.btn.btn-primary Create
                     .pull-right(style="margin: 5px")

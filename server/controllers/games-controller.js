@@ -223,7 +223,7 @@ setInterval(function(){
                 }
             });
 
-            console.log('Games update success...');
+            // console.log('Games update success...');
         }
     });
 }, 1000);
