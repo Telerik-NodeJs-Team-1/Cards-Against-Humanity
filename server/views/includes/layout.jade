@@ -9,10 +9,15 @@ html
         link(rel="stylesheet" href="/css/site.css")
         link(rel="stylesheet" href="/css/pace.css")
     body(ng-app="cardsAgainstHumanity")
-        header.nav.navbar-default.navbar-fixed-top
-            .container
+        header.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
                 include ../login
                 .navbar-header
+                    button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1").navbar-toggle.collapsed
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
                     a.navbar-brand(href="/home") CAH
                 .navbar-collapse.collapse
                     ul.nav.navbar-nav
@@ -24,6 +29,16 @@ html
                             a(href="/games/available") Available Games
                         li
                             a(href="/games/owned") My Games
+                        li.dropdown
+                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                | Cards
+                                span.caret
+                            ul.dropdown-menu(role='menu')
+                                li
+                                    a(href='/cards/mine') My cards
+                                li.divider
+                                li
+                                    a(href='/cards/create') Create
         block main-content
         footer
             p.text-center

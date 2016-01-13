@@ -36,7 +36,6 @@ module.exports = {
                     return res.send({reason: err.toString()});
                 }
 
-                res.send(user);
                 res.redirect('/');
             })
         });

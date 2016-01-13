@@ -8,6 +8,7 @@ var express = require('express'),
 
 function load(app){
     router.get('/create', auth.isAuthenticated, controller.loadCreateCardPage);
+    router.get('/mine', auth.isAuthenticated, controller.loadMyCardsPage);
     app.post('/api/cards', controller.createCard);
 }
 

@@ -1,0 +1,14 @@
+extend includes/layout
+block main-content
+
+    .my-cards-container
+        for card in cards
+            div(style="background-color: " + card.type).card
+                if card.type == 'black'
+                    span(style="color: white")= card.text
+                else
+                    span(style="color: black")= card.text
+
+        else
+            h1 no cards yet
+    br

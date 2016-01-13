@@ -21,10 +21,11 @@ var getBlackCardById = function(req, res){
 
 var createCard = function createGame(req, res) {
     var pendingCard = req.body;
-
+    pendingCard.status = "Pending";
+    pendingCard.byUser = req.user._id;
     PendingCard.create(pendingCard);
 
-    res.redirect('/');
+    res.redirect('/cards/mine');
 };
 
 var loadCreateCardPage = function(req, res){
@@ -33,9 +34,16 @@ var loadCreateCardPage = function(req, res){
     res.end();
 };
 
+var loadMyCardsPage = function(req, res){
+    PendingCard.find({byUser: req.user._id}).exec(function(err, collection) {
+        res.render('my-cards', {cards: collection, user: req.user});
+        res.end();
+    });
+};
 
 module.exports = {
     getBlackCardById: getBlackCardById,
     loadCreateCardPage: loadCreateCardPage,
-    createCard: createCard
+    createCard: createCard,
+    loadMyCardsPage: loadMyCardsPage
 };

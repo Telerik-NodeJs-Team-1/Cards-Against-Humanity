@@ -15,5 +15,12 @@ router.put('/users', auth.isAuthenticated, controller.updateUser);
 router.get('/profile', auth.isAuthenticated, controller.showProfile);
 
 module.exports = function(app){
+ /*
+    //TODO: on route loader
+ app.all('*', function(req, res, next) {
+        res.locals.user = req.user;
+        next();
+    });
+    */
     app.use('/identity', router);
 };

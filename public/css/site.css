@@ -152,6 +152,19 @@ footer p {
 .sign-up-update-form {
   width: 700px;
 }
+.my-cards-container {
+  min-height: 200px;
+}
+.card {
+  height: 150px;
+  width: 90px;
+  border-radius: 7px;
+  border: 2px solid #a9a9a9;
+  display: inline-block;
+  float: left;
+  margin: 2px;
+  padding: 2px;
+}
 @-moz-keyframes hvr-back-pulse {
   50% {
     background-color: rgba(32,152,209,0.75);

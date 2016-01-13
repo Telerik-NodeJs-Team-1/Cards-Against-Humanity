@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var pendingCardSchema = new mongoose.Schema({
     type: String,
-    value: String,
-    blankSpaces: Number
+    text: String,
+    blankSpaces: Number,
+    status: String,
+    byUser: String
 });
 
 var PendingCard = mongoose.model('PendingCard', pendingCardSchema);
