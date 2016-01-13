@@ -1,0 +1,27 @@
+extend includes/layout
+block main-content
+    .row
+        .col-md-10.col-md-offset-1
+            table.table.table-condensed.table-striped.table-responsive
+                thead
+                    tr
+                        th Type
+                        th Text
+                        th ?Cards required
+                tbody
+                    for card in cards
+                        tr
+                            td= card.type
+                            td= card.text
+                            td= card.blankSpaces
+                            td
+                                form(method="POST", action="api/update")
+                                    input(type="hidden", name="_id", value=card.id)
+                                    input(type="hidden", name="status", value="Accepted")
+                                    button(type="submit")
+                                        span.glyphicon.glyphicon-ok
+                                form(method="POST", action="api/update")
+                                    input(type="hidden", name="_id", value=card.id)
+                                    input(type="hidden", name="status", value="Rejected")
+                                    button(type="submit")
+                                        span.glyphicon.glyphicon-remove

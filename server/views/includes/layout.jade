@@ -39,6 +39,10 @@ html
                                 li.divider
                                 li
                                     a(href='/cards/create') Create
+                                if user && user.roles.indexOf('admin') > -1
+                                    li.divider
+                                    li
+                                        a(href='/cards/pending') Pending
         block main-content
         footer
             p.text-center
