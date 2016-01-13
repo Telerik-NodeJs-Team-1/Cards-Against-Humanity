@@ -11,8 +11,6 @@ module.exports = {
             req.logIn(user, function(err) {
                 if (err) return next(err);
                 res.redirect('/home');
-                res.send({success: true});
-                res.end();
             });
 
             res.end();
@@ -23,7 +21,6 @@ module.exports = {
     logout: function(req, res, next) {
         req.logout();
         res.redirect('/home');
-        res.end();
     },
     isAuthenticated: function(req, res, next) {
         if (!req.isAuthenticated()) {
