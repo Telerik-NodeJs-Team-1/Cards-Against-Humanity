@@ -1,0 +1,17 @@
+extend includes/layout
+block main-content
+    .create-card-form.container
+        .well
+            form.form-horizontal
+                fieldset
+                    legend
+                        strong Create New Card
+                    .form-group
+                        label.col-md-2.control-label(for="text") Text
+                        .col-md-10
+                            input.form-control#text(type="text", placeholder="Text", name="text", required)
+
+                    .pull-right(style="margin: 5px")
+                        button.btn.btn-primary Create
+                    .pull-right(style="margin: 5px")
+                        a.btn.btn-primary(href="/") Cancel

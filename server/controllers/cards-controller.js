@@ -18,6 +18,14 @@ var getBlackCardById = function(req, res){
   });
 };
 
+var loadCreateCardPage = function(req, res){
+    var user = req.user;
+    res.render('create-card', {user: user});
+    res.end();
+};
+
+
 module.exports = {
-    getBlackCardById: getBlackCardById
+    getBlackCardById: getBlackCardById,
+    loadCreateCardPage: loadCreateCardPage
 };
