@@ -8,7 +8,7 @@ var express = require('express'),
 
 router.get('/available', auth.isAuthenticated, controller.getAvailableGamesForCurrentUser);
 router.get('/create', auth.isAuthenticated, controller.loadCreateGamePage);
-//app.post('/api/games', controllers.games.create);
+router.post('/create', controller.createGame);
 router.get('/:id', auth.isAuthenticated, controller.getById);
 router.get('/details/:id', auth.isAuthenticated, controller.loadDetailsForGame);
 router.post('/:id', auth.isAuthenticated, controller.joinGame);

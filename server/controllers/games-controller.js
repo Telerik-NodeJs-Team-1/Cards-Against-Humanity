@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
 
 var createGame = function createGame(req, res){
     var newGame = req.body;
+    newGame.creator = req.user.username;
     newGame.currentRound = 1;
     newGame.timeLeftFromCurrentRound = 120;
     newGame.currentCzar = newGame.creator;
@@ -51,8 +52,7 @@ var createGame = function createGame(req, res){
                 }
 
                 res.status(201);
-                res.write(JSON.stringify(game));
-                res.end();
+                res.redirect('/games/details/' + game._id);
             })
         });
     });
@@ -71,11 +71,9 @@ var joinGame = function(req, res){
         if(game.participants.indexOf(username) < 0) {
             game.participants.push(username);
             game.save();
-            res.redirect('games/details/' + gameId);
         }
 
-        res.status(200);
-        res.end();
+        res.redirect('games/details/' + gameId);
     });
 };
 
@@ -104,11 +102,9 @@ var getAvailableGamesForCurrentUser = function(req, res, next){
         var availableGames = [];
         for (var i = 0; i < games.length; i += 1) {
             var currentGame = games[i];
-            if (currentGame.creator === req.user.username) {
-                continue;
+            if (currentGame.creator !== req.user.username) {
+                availableGames.push(currentGame);
             }
-
-            availableGames.push(currentGame);
         }
 
         res.render('available-games', {
@@ -256,7 +252,7 @@ module.exports = function(){
     let controller = {
         loadCreateGamePage: loadCreateGamePage,
         loadDetailsForGame: loadDetailsForGame,
-        create: createGame,
+        createGame: createGame,
         getAll: getAllGames,
         getAvailableGamesForCurrentUser: getAvailableGamesForCurrentUser,
         getById: getById,
