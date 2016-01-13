@@ -54,7 +54,7 @@
                     if(Number($seconds.text()) === 0){
                         // reset UI - white cards
                         $('.white-card-container').each(function(index, value){
-                           $(value).removeClass('.selected-white-card');
+                           $(value).removeClass('selected-white-card');
                         });
                     }
                 })
