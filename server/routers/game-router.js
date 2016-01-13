@@ -11,7 +11,7 @@ router.get('/create', auth.isAuthenticated, controller.loadCreateGamePage);
 //app.post('/api/games', controllers.games.create);
 router.get('/:id', auth.isAuthenticated, controller.getById);
 router.get('/details/:id', auth.isAuthenticated, controller.loadDetailsForGame);
-//app.post('/api/games/:id', controllers.games.toggleParticipation);
+router.post('/games/:id', auth.isAuthenticated, controller.joinGame);
 //app.post('/api/games/:id/cards/czar', controllers.games.registerCzarCards);
 //app.post('/api/games/:id/cards/user', controllers.games.registerUserCards);
 

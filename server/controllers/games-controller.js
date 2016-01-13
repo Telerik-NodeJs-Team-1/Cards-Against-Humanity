@@ -58,6 +58,13 @@ var createGame = function createGame(req, res){
     });
 };
 
+var joinGame = function(req, res){
+    var gameId = req.params.id;
+    Game.findById(gameId, function(error, game){
+       game.participants.push(req.params.username);
+    });
+};
+
 var getAllGames = function getAllGames(req, res){
     Game.find({}, function(error, games){
         if(error){
@@ -239,6 +246,7 @@ module.exports = function(){
         getAll: getAllGames,
         getAvailableGamesForCurrentUser: getAvailableGamesForCurrentUser,
         getById: getById,
+        joinGame: joinGame,
         registerCzarCards: registerCzarCards,
         registerUserCards: registerUserCards
     };

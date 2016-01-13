@@ -6,7 +6,8 @@ block main-content
                 div
                     .jumbotron.centered-div.text-center.row
                         strong.col-lg-5(style="font-size:25px") #{game.name}
-                        a.col-lg-5(href="/games/details/#{game._id}" class="btn btn-sm btn-primary") Join the party
+                        form(action="/games/#{game._id}", method="post")
+                            button.col-lg-5(class="btn btn-sm btn-primary") Join the party
 
     if !(data.length > 0)
         .text-center
