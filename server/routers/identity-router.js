@@ -13,6 +13,7 @@ router.post('/users', controller.createUser);
 router.get('/users', auth.isInRole('admin'), controller.getAllUsers);
 router.put('/users', auth.isAuthenticated, controller.updateUser);
 router.get('/profile', auth.isAuthenticated, controller.showProfile);
+router.get('/profile/stats', auth.isAuthenticated, controller.getStats);
 
 module.exports = function(app){
  /*

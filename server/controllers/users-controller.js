@@ -1,7 +1,8 @@
 "use strict";
 
 var encryption = require('../utilities/encryption');
-var User = require('mongoose').model('User');
+var User = require('mongoose').model('User'),
+    UserStats = require('mongoose').model('UserStat');
 
 module.exports = function() {
     var controller = {
@@ -68,6 +69,11 @@ module.exports = function() {
 
                 res.send(collection);
             })
+        },
+        getStats: function(req, res){
+            UserStats.find({username: req.user.username}).exec(function(err, stats){
+               res.send(stats);
+            });
         }
     };
 

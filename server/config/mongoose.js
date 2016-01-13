@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
     whiteCard = require('../models/white-card-model'),
     blackCard = require('../models/black-card-model'),
     pendingCard = require('../models/pending-cards-model'),
-    game = require('../models/game-model');
+    game = require('../models/game-model'),
+    userStats = require('../models/user-stats-model');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -26,4 +27,5 @@ module.exports = function(config) {
     whiteCard.seedInitialWhiteCards();
     blackCard.seedInitialBlackCards();
     pendingCard.getPendingCardCount();
+    userStats.getUserStats();
 };
