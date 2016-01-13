@@ -24,8 +24,7 @@ var createCard = function createGame(req, res) {
 
     PendingCard.create(pendingCard);
 
-    res.status(200);
-    res.end();
+    res.redirect('/');
 };
 
 var loadCreateCardPage = function(req, res){
