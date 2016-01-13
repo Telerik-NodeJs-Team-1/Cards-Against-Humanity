@@ -1,4 +1,8 @@
+"use strict";
+
 var passport = require('passport');
+require('../../public/lib/jquery/dist/jquery.min');
+require('../../public/lib/toastr/toastr.min');
 
 module.exports = {
     login: function(req, res, next) {
@@ -10,6 +14,8 @@ module.exports = {
 
             req.logIn(user, function(err) {
                 if (err) return next(err);
+                notifier.success('You are now logged in');
+                res.redirect('/home');
                 res.send({success: true});
                 res.end();
             });
@@ -21,6 +27,7 @@ module.exports = {
     },
     logout: function(req, res, next) {
         req.logout();
+        res.redirect('/home');
         res.end();
     },
     isAuthenticated: function(req, res, next) {

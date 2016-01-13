@@ -1,10 +1,10 @@
 .navbar-right(ng-controller="LoginController")
     if !user
-        form.navbar-form
+        form.navbar-form(action="/identity/login", method="post")
             .form-group
-                input.form-control(type="text", placeholder="Username", ng-model="user.username")
-                input.form-control(type="password", placeholder="Password", ng-model="user.password")
-            a.btn.btn-default(href="/" ng-click="login(user)") Log In
+                input.form-control(type="text", placeholder="Username", name="username")
+                input.form-control(type="password", placeholder="Password", name="password")
+            button.btn.btn-default Log In
             a.btn.btn-default(href="/identity/signup") Sign Up
 
     ul.nav.navbar-nav.navbar-right
@@ -12,6 +12,7 @@
             if user
                 a.dropdown-toggle(style="margin-right:50px" href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
                     span.caret
+            form(action="identity/logout" method="post")
             ul.dropdown-menu(style="margin-right:50px")
                 if user && user.roles.indexOf('admin') > 0
                     li
@@ -19,4 +20,4 @@
                 li
                     a(href="/identity/profile") Profile
                 li
-                    a(href="/" ng-click="logout()") Sign Out
+                    button Log Out

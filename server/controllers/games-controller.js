@@ -60,8 +60,22 @@ var createGame = function createGame(req, res){
 
 var joinGame = function(req, res){
     var gameId = req.params.id;
+    var username = req.user.username;
     Game.findById(gameId, function(error, game){
-       game.participants.push(req.params.username);
+        if(error){
+            res.status(304);
+            res.end();
+            return;
+        }
+
+        if(game.participants.indexOf(username) < 0) {
+            game.participants.push(username);
+            game.save();
+            res.redirect('games/details/' + gameId);
+        }
+
+        res.status(200);
+        res.end();
     });
 };
 
