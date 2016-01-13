@@ -14,13 +14,6 @@ function load(app){
     router.get('/pending', auth.isAuthenticated, auth.isInRole("admin"), controller.loadPendingCardsPage)
 }
 
-//app.get('/api/games', controllers.games.getAll);
-//router.get('/details/:id', auth.isAuthenticated, controller.getById);
-//app.post('/api/games/:id', controllers.games.toggleParticipation);
-//app.post('/api/games/:id/cards/czar', controllers.games.registerCzarCards);
-//app.post('/api/games/:id/cards/user', controllers.games.registerUserCards);
-
-
 module.exports = function(app){
     app.use('/cards', router);
 

@@ -73,7 +73,7 @@ var joinGame = function(req, res){
             game.save();
         }
 
-        res.redirect('games/details/' + gameId);
+        res.redirect('/games/details/' + gameId);
     });
 };
 
@@ -160,12 +160,11 @@ var registerUserCards= function registerUserCards(req, res){
         }
 
         var userCards = {
-            username: req.body.username,
+            username: req.user.username,
             cards: req.body.cards
         };
-        console.log(userCards);
-        game.currentUserCards.push(userCards);
 
+        game.currentUserCards.push(userCards);
         game.save();
 
         res.status(201);
@@ -242,8 +241,6 @@ setInterval(function(){
                     }
                 }
             });
-
-            // console.log('Games update success...');
         }
     });
 }, 1000);

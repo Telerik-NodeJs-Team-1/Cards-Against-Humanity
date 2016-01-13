@@ -12,8 +12,8 @@ router.post('/create', controller.createGame);
 router.get('/:id', auth.isAuthenticated, controller.getById);
 router.get('/details/:id', auth.isAuthenticated, controller.loadDetailsForGame);
 router.post('/:id', auth.isAuthenticated, controller.joinGame);
-//app.post('/api/games/:id/cards/czar', controllers.games.registerCzarCards);
-//app.post('/api/games/:id/cards/user', controllers.games.registerUserCards);
+router.post('/:id/cards/czar', controller.registerCzarCards);
+router.post('/:id/cards/user', controller.registerUserCards);
 
 
 module.exports = function(app){

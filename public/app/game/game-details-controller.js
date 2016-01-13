@@ -31,7 +31,7 @@
                                     });
                             } else {
                                 games
-                                    .registerUserCards(vm.game._id, identity.currentUser.username, vm.selections)
+                                    .registerUserCards(vm.game._id, vm.selections)
                                     .then(function () {
                                         notifier.success('Your choice has been submitted');
                                     });
