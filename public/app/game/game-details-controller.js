@@ -53,6 +53,7 @@
                     vm.userWhiteCards = vm.game.currentWhiteCards.slice(0, 4);
                     if(Number($seconds.text()) === 0){
                         // reset UI - white cards
+                        vm.selections = [];
                         $('.white-card-container').each(function(index, value){
                            $(value).removeClass('selected-white-card');
                         });
