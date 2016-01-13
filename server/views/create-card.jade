@@ -10,7 +10,18 @@ block main-content
                         label.col-md-2.control-label(for="text") Text
                         .col-md-10
                             input.form-control#text(type="text", placeholder="Text", name="text", required)
-
+                    .form-group
+                        label.col-md-2.control-label Type
+                        .col-md-10
+                            .radio
+                                label
+                                    input#white(type="radio", name="cardType", value="white" checked="checked")
+                                    | White
+                            .radio
+                                label
+                                    input#black(type="radio", name="cardType", value="black")
+                                    | Black
+                    .div(ng-controller="CardsController as vm") {{vm.meow}}
                     .pull-right(style="margin: 5px")
                         button.btn.btn-primary Create
                     .pull-right(style="margin: 5px")
