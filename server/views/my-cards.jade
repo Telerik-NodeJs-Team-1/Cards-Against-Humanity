@@ -1,14 +1,21 @@
 extend includes/layout
 block main-content
 
-    .my-cards-container
-        for card in cards
-            div(style="background-color: " + card.type).card
-                if card.type == 'black'
-                    span(style="color: white")= card.text
-                else
-                    span(style="color: black")= card.text
+    .row
+        .col-md-10.col-md-offset-1.my-cards-container
+            for card in cards
+                div(style="background-color: " + card.type).card
+                    if card.status == 'Pending'
+                        div.glyphicon.glyphicon-question-sign(style="color: yellow; font-size: 1.3em")
+                    if card.status == 'Accepted'
+                        div.glyphicon.glyphicon-ok-sign(style="color: green; font-size: 1.3em")
+                    if card.status == 'Rejected'
+                        div.glyphicon.glyphicon-remove-sign(style="color: red; font-size: 1.3em")
+                    if card.type == 'black'
+                        h3(style="color: white")= card.text
+                    else
+                        h3(style="color: black")= card.text
 
-        else
-            h1 no cards yet
-    br
+            else
+                h1 no cards yet
+        br

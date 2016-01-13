@@ -153,11 +153,12 @@ footer p {
   width: 700px;
 }
 .my-cards-container {
-  min-height: 200px;
+  min-height: 250px;
+  display: block;
 }
 .card {
-  height: 150px;
-  width: 90px;
+  height: 250px;
+  width: 180px;
   border-radius: 7px;
   border: 2px solid #a9a9a9;
   display: inline-block;
