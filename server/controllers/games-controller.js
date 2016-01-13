@@ -99,15 +99,21 @@ var getAvailableGamesForCurrentUser = function(req, res, next){
     });
 };
 
-var getById = function getById(req, res){
+var loadDetailsForGame = function loadDetailsForGame(req, res){
     Game.findById(req.params.id, function(error, game){
-        console.log(req.params.id);
         var user = req.user;
         res.render('game-details', {
-            user: user,
-            game: game
+            user: user
         });
 
+        res.end();
+    });
+};
+
+var getById = function getById(req, res){
+    Game.findById(req.params.id, function(error, game){
+        var user = req.user;
+        res.send(JSON.stringify(game));
         res.end();
     });
 };
@@ -151,9 +157,6 @@ var registerUserCards= function registerUserCards(req, res){
 };
 
 var checkCzarCardsAgainstUserCards = function checkCzarCardsAgainstUserCards(czar, user){
-    console.log(czar);
-    console.log(user);
-
     for(var i = 0; i < user.length; i += 1){
         var currentCards = user[i].cards;
         var winner = user[i].username;
@@ -231,6 +234,7 @@ setInterval(function(){
 module.exports = function(){
     let controller = {
         loadCreateGamePage: loadCreateGamePage,
+        loadDetailsForGame: loadDetailsForGame,
         create: createGame,
         getAll: getAllGames,
         getAvailableGamesForCurrentUser: getAvailableGamesForCurrentUser,

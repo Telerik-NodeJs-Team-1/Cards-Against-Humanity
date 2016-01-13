@@ -11,11 +11,11 @@
         };
 
         var getById = function getById(id){
-            return data.get('/api/games/' + id);
+            return data.get('/games/' + id);
         };
 
         var joinGame = function joinGame(gameId, username){
-            return data.post('/api/games/' + gameId, {ContentType: 'application/json'}, {gameId: gameId, username: username});
+            return data.post('/games/' + gameId, {ContentType: 'application/json'}, {gameId: gameId, username: username});
         };
 
         var leaveGame = function leaveGame(gameId, username){

@@ -9,8 +9,8 @@ var express = require('express'),
 router.get('/available', auth.isAuthenticated, controller.getAvailableGamesForCurrentUser);
 router.get('/create', auth.isAuthenticated, controller.loadCreateGamePage);
 //app.post('/api/games', controllers.games.create);
-//app.get('/api/games', controllers.games.getAll);
-router.get('/details/:id', auth.isAuthenticated, controller.getById);
+router.get('/:id', auth.isAuthenticated, controller.getById);
+router.get('/details/:id', auth.isAuthenticated, controller.loadDetailsForGame);
 //app.post('/api/games/:id', controllers.games.toggleParticipation);
 //app.post('/api/games/:id/cards/czar', controllers.games.registerCzarCards);
 //app.post('/api/games/:id/cards/user', controllers.games.registerUserCards);

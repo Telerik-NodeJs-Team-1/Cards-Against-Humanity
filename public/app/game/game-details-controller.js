@@ -5,27 +5,12 @@
         var vm = this;
         vm.selections = [];
 
-        if(!identity.isAuthenticated()){
-            $location.path('/unauthorized');
-            return;
-        }
-
-        vm.leaveGame = function(gameId){
-            clearInterval(updateState);
-          games
-              .leaveGame(gameId, identity.currentUser.username)
-              .then(function(){
-                  notifier.success('You left the game successfully');
-              });
-        };
-
+        var gameId = $location.absUrl().split('/').pop();
         games
-            .getById($routeParams.id)
+            .getById(gameId)
             .then(function(resp){
                 vm.game = resp.data;
-                vm.isCzar = vm.game.currentCzar === identity.currentUser.username;
-                vm.currentUserIndex = vm.game.participants.indexOf(identity.currentUser.username);
-                vm.userWhiteCards = vm.game.currentWhiteCards.slice(vm.currentUserIndex * 4, 4);
+                vm.userWhiteCards = vm.game.currentWhiteCards.slice(0, 4);
             });
 
         $('.noselect').on('click', function(event){
@@ -62,13 +47,10 @@
         var $seconds = $('.seconds');
         var updateState = setInterval(function(){
             games
-                .getById($routeParams.id)
+                .getById(gameId)
                 .then(function(resp){
                     vm.game = resp.data;
-                    vm.currentUserIndex = vm.game.participants.indexOf(identity.currentUser.username);
-                    vm.userWhiteCards = vm.game.currentWhiteCards.slice(vm.currentUserIndex * 4, vm.currentUserIndex * 4 + 4);
-                    console.log(vm.userWhiteCards);
-                    console.log(vm.game.currentWhiteCards);
+                    vm.userWhiteCards = vm.game.currentWhiteCards.slice(0, 4);
                     if(Number($seconds.text()) === 0){
                         // reset UI - white cards
                         $('.white-card-container').each(function(index, value){

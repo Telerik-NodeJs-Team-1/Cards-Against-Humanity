@@ -3,7 +3,7 @@
 var express = require('express'),
     router = new express.Router(),
     mongoose = require('mongoose'),
-    controller = require('../controllers/users-controller'),
+    controller = require('../controllers/users-controller')(),
     auth = require('../config/auth');
 
 router.post('/login', auth.login);

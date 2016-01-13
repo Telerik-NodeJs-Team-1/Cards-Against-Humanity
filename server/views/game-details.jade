@@ -1,26 +1,21 @@
 extend includes/layout
 block main-content
-    .noselect
+    .noselect(ng-controller="GameDetailsPageController as vm")
         .clock-container.text-center
-            h1 Round #{game.currentRound}
+            h1 Round {{vm.game.currentRound}}
             #clockdiv
                 div
-                    span.seconds #{game.timeLeftFromCurrentRound}
+                    span.seconds {{vm.game.timeLeftFromCurrentRound}}
                     .smalltext Seconds
-        if isCzar
-            .czar.text-center
-                h3
-                    strong You are the czar, choose the funniest combination
+        .czar.text-center(ng-show='vm.isCzar')
+            h3
+                strong You are the czar, choose the funniest combination
         br
         .text-center
-            a(class="btn btn-sm btn-info" href="/games/view") Leave
+            a(class="btn btn-sm btn-info" ng-click="vm.leaveGame(vm.game._id)" href="/games/view") Leave
         .black-card-container
-            div #{blackCard.value}
-            div.white-cards-required Pick #{blackCard.whiteCardsRequire}
-        if !isCzar
-            each whiteCard in userWhiteCards
-                .white-card-container.hvr-back-pulse #{whiteCard}
-        if isCzar
-            each whiteCard in currentWhiteCards
-                .white-card-container.hvr-back-pulse #{whiteCard}
+            div {{vm.blackCard.value}}
+            div.white-cards-required Pick {{vm.blackCard.whiteCardsRequire}}
+        .white-card-container.hvr-back-pulse(ng-hide='vm.isCzar' ng-repeat="whiteCard in vm.userWhiteCards") {{whiteCard}}
+        .white-card-container.hvr-back-pulse(ng-show='vm.isCzar' ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
         br

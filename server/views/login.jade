@@ -10,9 +10,9 @@
     ul.nav.navbar-nav.navbar-right
         li.dropdown
             if user
-                a.dropdown-toggle(href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
+                a.dropdown-toggle(style="margin-right:50px" href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
                     span.caret
-            ul.dropdown-menu
+            ul.dropdown-menu(style="margin-right:50px")
                 if user && user.roles.indexOf('admin') > 0
                     li
                         a(href="/identity/users") Users
