@@ -6,8 +6,11 @@ var express = require('express'),
     auth = require('../config/auth'),
     controller = require('../controllers/cards-controller');
 
-router.get('/create', auth.isAuthenticated, controller.loadCreateCardPage);
-//app.post('/api/games', controllers.games.create);
+function load(app){
+    router.get('/create', auth.isAuthenticated, controller.loadCreateCardPage);
+    app.post('/api/cards', controller.createCard);
+}
+
 //app.get('/api/games', controllers.games.getAll);
 //router.get('/details/:id', auth.isAuthenticated, controller.getById);
 //app.post('/api/games/:id', controllers.games.toggleParticipation);
@@ -17,4 +20,6 @@ router.get('/create', auth.isAuthenticated, controller.loadCreateCardPage);
 
 module.exports = function(app){
     app.use('/cards', router);
+
+    load(app);
 };

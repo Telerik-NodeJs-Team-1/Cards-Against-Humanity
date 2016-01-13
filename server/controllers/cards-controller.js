@@ -18,6 +18,13 @@ var getBlackCardById = function(req, res){
   });
 };
 
+var createCard = function createGame(req, res) {
+    console.log(req.body);
+
+    res.status(200);
+    res.end();
+};
+
 var loadCreateCardPage = function(req, res){
     var user = req.user;
     res.render('create-card', {user: user});
@@ -27,5 +34,6 @@ var loadCreateCardPage = function(req, res){
 
 module.exports = {
     getBlackCardById: getBlackCardById,
-    loadCreateCardPage: loadCreateCardPage
+    loadCreateCardPage: loadCreateCardPage,
+    createCard: createCard
 };

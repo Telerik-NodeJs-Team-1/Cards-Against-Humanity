@@ -2,7 +2,7 @@ extend includes/layout
 block main-content
     .create-card-form.container
         .well
-            form.form-horizontal
+            form.form-horizontal(action="api/cards", method="POST")
                 fieldset
                     legend
                         strong Create New Card
