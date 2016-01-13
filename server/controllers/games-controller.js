@@ -131,7 +131,10 @@ var loadDetailsForGame = function loadDetailsForGame(req, res){
 var getById = function getById(req, res){
     Game.findById(req.params.id, function(error, game){
         var user = req.user;
-        res.send(JSON.stringify(game));
+        var gameCopy = Object.assign({}, game);
+        gameCopy.currentUser = user;
+        console.log(gameCopy);
+        res.send(JSON.stringify(gameCopy));
         res.end();
     });
 };
@@ -213,7 +216,11 @@ setInterval(function(){
                         elem.timeLeftFromCurrentRound = Number(elem.timeLeftFromCurrentRound) - 1;
                         elem.save();
                     } else {
+                        var randomNextCzarIndex = Math.floor(Math.random() * (elem.participants.length + 1));
+                        var nextCzar = elem.participants[randomNextCzarIndex];
+
                         BlackCard.find({}, function (error, blackCards) {
+                            elem.currentCzar = nextCzar;
                             elem.timeLeftFromCurrentRound = 120;
                             elem.currentRound = Number(elem.currentRound) + 1;
 

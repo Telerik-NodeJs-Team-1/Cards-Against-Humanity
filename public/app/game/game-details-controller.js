@@ -9,8 +9,10 @@
         games
             .getById(gameId)
             .then(function(resp){
-                vm.game = resp.data;
+                vm.game = resp.data._doc;
                 vm.userWhiteCards = vm.game.currentWhiteCards.slice(0, 4);
+                vm.currentUserName = resp.data.currentUser.username;
+                vm.isCzar = vm.currentUserName === vm.game.currentCzar;
             });
 
         $('.noselect').on('click', function(event){
@@ -49,8 +51,10 @@
             games
                 .getById(gameId)
                 .then(function(resp){
-                    vm.game = resp.data;
+                    vm.game = resp.data._doc;
                     vm.userWhiteCards = vm.game.currentWhiteCards.slice(0, 4);
+                    vm.currentUserName = resp.data.currentUser.username;
+                    vm.isCzar = vm.currentUserName === vm.game.currentCzar;
                     if(Number($seconds.text()) === 0){
                         // reset UI - white cards
                         vm.selections = [];

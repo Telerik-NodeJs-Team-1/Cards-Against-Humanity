@@ -7,19 +7,15 @@ block main-content
                 div
                     span.seconds {{vm.game.timeLeftFromCurrentRound}}
                     .smalltext Seconds
-        if isCzar
-            .czar.text-center
-                h3
-                    strong You are the czar, choose the funniest combination
+        .czar.text-center(ng-show='vm.isCzar')
+            h3
+                strong You are the czar, choose the funniest combination
         br
         .text-center
             a(class="btn btn-sm btn-info" ng-click="vm.leaveGame(vm.game._id)" href="/games/view") Leave
         .black-card-container
             div {{vm.blackCard.value}}
             div.white-cards-required Pick {{vm.blackCard.whiteCardsRequire}}
-
-        if !isCzar
-            .white-card-container.hvr-back-pulse(ng-repeat="whiteCard in vm.userWhiteCards") {{whiteCard}}
-        if isCzar
-            .white-card-container.hvr-back-pulse(ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
+        .white-card-container.hvr-back-pulse(ng-hide='vm.isCzar' ng-repeat="whiteCard in vm.userWhiteCards") {{whiteCard}}
+        .white-card-container.hvr-back-pulse(ng-show='vm.isCzar' ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
         br
