@@ -120,7 +120,8 @@ var loadDetailsForGame = function loadDetailsForGame(req, res){
     Game.findById(req.params.id, function(error, game){
         var user = req.user;
         res.render('game-details', {
-            user: user
+            user: user,
+            isCzar: user.username === game.creator
         });
 
         res.end();
