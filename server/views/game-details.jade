@@ -1,0 +1,26 @@
+extend includes/layout
+block main-content
+    .noselect
+        .clock-container.text-center
+            h1 Round #{game.currentRound}
+            #clockdiv
+                div
+                    span.seconds #{game.timeLeftFromCurrentRound}
+                    .smalltext Seconds
+        if isCzar
+            .czar.text-center
+                h3
+                    strong You are the czar, choose the funniest combination
+        br
+        .text-center
+            a(class="btn btn-sm btn-info" href="/games/view") Leave
+        .black-card-container
+            div #{blackCard.value}
+            div.white-cards-required Pick #{blackCard.whiteCardsRequire}
+        if !isCzar
+            each whiteCard in userWhiteCards
+                .white-card-container.hvr-back-pulse #{whiteCard}
+        if isCzar
+            each whiteCard in currentWhiteCards
+                .white-card-container.hvr-back-pulse #{whiteCard}
+        br

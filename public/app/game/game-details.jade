@@ -1,10 +1,19 @@
-.clock-container.text-center
-    h1 Round {{vm.game.currentRound}}
-    #clockdiv
-        div
-            span.seconds {{vm.game.timeLeftFromCurrentRound}}
-            .smalltext Seconds
-.black-card-container
-    div {{vm.game.currentBlackCard}}
-.white-card-container(ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
-br
+.noselect
+    .clock-container.text-center
+        h1 Round {{vm.game.currentRound}}
+        #clockdiv
+            div
+                span.seconds {{vm.game.timeLeftFromCurrentRound}}
+                .smalltext Seconds
+    .czar.text-center(ng-show='vm.isCzar')
+        h3
+            strong You are the czar, choose the funniest combination
+    br
+    .text-center
+        a(class="btn btn-sm btn-info" ng-click="vm.leaveGame(vm.game._id)" href="/games/view") Leave
+    .black-card-container
+        div {{vm.blackCard.value}}
+        div.white-cards-required Pick {{vm.blackCard.whiteCardsRequire}}
+    .white-card-container.hvr-back-pulse(ng-hide='vm.isCzar' ng-repeat="whiteCard in vm.userWhiteCards") {{whiteCard}}
+    .white-card-container.hvr-back-pulse(ng-show='vm.isCzar' ng-repeat="whiteCard in vm.game.currentWhiteCards") {{whiteCard}}
+    br

@@ -2,10 +2,28 @@ var encryption = require('../utilities/encryption');
 var User = require('mongoose').model('User');
 
 module.exports = {
+    showRegisterForm: function(req, res){
+        if(req.user){
+            res.redirect('/');
+            res.end();
+            return;
+        }
+
+        res.render('sign-up', {});
+        res.end();
+    },
+
+    showProfile: function(req, res){
+        var user = req.user;
+        res.render('profile', {user: user});
+        res.end();
+    },
+
     createUser: function(req, res, next) {
         var newUserData = req.body;
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
+        newUserData.points = 0;
         User.create(newUserData, function(err, user) {
             if (err) {
                 console.log('Failed to register new user: ' + err);
@@ -16,9 +34,10 @@ module.exports = {
                 if (err) {
                     res.status(400);
                     return res.send({reason: err.toString()});
-                };
+                }
 
                 res.send(user);
+                res.redirect('/');
             })
         });
     },

@@ -1,8 +1,8 @@
 var mongoose = require('mongoose'),
-    user = require('../models/User'),
-    whiteCard = require('../models/WhiteCard'),
-    blackCard = require('../models/BlackCard'),
-    game = require('../models/Game');
+    user = require('../models/user-model'),
+    whiteCard = require('../models/white-card-model'),
+    blackCard = require('../models/black-card-model'),
+    game = require('../models/game-model');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

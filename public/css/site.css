@@ -75,6 +75,7 @@ footer p {
   font-weight: 600;
   font-size: 30px;
   text-align: center;
+  padding: 15px;
 }
 .white-card-container {
   background-color: #ddd;
@@ -88,4 +89,86 @@ footer p {
   font-weight: 600;
   font-size: 30px;
   text-align: center;
+  padding: 15x;
+}
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32,152,209,0.75);
+  }
+}
+.hvr-back-pulse {
+  display: block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0,0,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover,
+.hvr-back-pulse:focus,
+.hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098d1;
+  color: #fff;
+}
+.selected-white-card {
+  color: #a91b0c;
+}
+.white-cards-required {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #000;
+  font-size: 16px;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.sign-up-update-form {
+  width: 700px;
+}
+@-moz-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32,152,209,0.75);
+  }
+}
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32,152,209,0.75);
+  }
+}
+@-o-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32,152,209,0.75);
+  }
+}
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32,152,209,0.75);
+  }
 }

@@ -1,0 +1,24 @@
+extend includes/layout
+block main-content
+    .sign-up-update-form.container
+        .well
+            form.form-horizontal(name="profileForm" action="/api/users" method="put")
+                fieldset
+                    legend
+                        strong Update your information
+                    .form-group
+                        label.col-md-2.control-label(for="first-name") First Name
+                        .col-md-10
+                            input.form-control#first-name(type="text", placeholder="First Name", name="firstName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="last-name") Last Name
+                        .col-md-10
+                            input.form-control#last-name(type="text", placeholder="Last Name", name="lastName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="password") Password
+                        .col-md-10
+                            input.form-control#password(type="password", placeholder="Password", name="password")
+                    .pull-right(style="margin: 5px")
+                        button.btn.btn-primary Update
+                    .pull-right(style="margin: 5px")
+                        a.btn.btn-primary(href="/") Cancel

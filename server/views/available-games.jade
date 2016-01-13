@@ -1,0 +1,13 @@
+extend includes/layout
+block main-content
+    if data.length > 0
+        .view-games-container
+            each game in data
+                div
+                    .jumbotron.centered-div.text-center.row
+                        strong.col-lg-5(style="font-size:25px") #{game.name}
+                        a.col-lg-5(href="/games/details/#{game._id}" class="btn btn-sm btn-primary") Join the party
+
+    if !(data.length > 0)
+        .text-center
+            h3 There are no games for you to join right now. Come back later.

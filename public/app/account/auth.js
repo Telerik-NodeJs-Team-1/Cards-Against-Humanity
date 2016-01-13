@@ -35,7 +35,7 @@
         var login = function login(user){
             var deferred = $q.defer();
 
-            $http.post('/login', user).success(function (response) {
+            $http.post('/identity/login', user).success(function (response) {
                 if (response.success) {
                     var user = new UsersResource();
                     angular.extend(user, response.user);
@@ -53,7 +53,7 @@
         var logout = function logout(user){
             var deferred = $q.defer();
 
-            $http.post('/logout').success(function () {
+            $http.post('/identity/logout').success(function () {
                 identity.currentUser = undefined;
                 deferred.resolve();
             });

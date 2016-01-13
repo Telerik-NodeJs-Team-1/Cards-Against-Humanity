@@ -9,8 +9,24 @@ html
         link(rel="stylesheet" href="/css/site.css")
         link(rel="stylesheet" href="/css/pace.css")
     body(ng-app="cardsAgainstHumanity")
+        header.nav.navbar-default.navbar-fixed-top
+            .container
+                include ../login
+                .navbar-header
+                    a.navbar-brand(href="/home") CAH
+                .navbar-collapse.collapse
+                    ul.nav.navbar-nav
+                        li
+                            a(href="/home") Home
+                        li
+                            a(href="/games/create") Create Game
+                        li
+                            a(href="/games/available") Available Games
+                        li
+                            a(href="/games/owned") My Games
         block main-content
-
+        footer
+            p.text-center
+                | &copy; Team 1 - TA 2016
         include scripts
-        include currentUser
 

@@ -2,7 +2,7 @@
     div(ng-repeat="game in vm.games")
         .jumbotron.centered-div.text-center.row
             strong.col-lg-5(style="font-size:25px") {{game.name}}
-            a.col-lg-5(ng-href="/games/details/{{game._id}}" class="btn btn-sm btn-primary") Join the party
+            a.col-lg-5(ng-href="/games/details/{{game._id}}" ng-click="vm.joinGame(game._id)" class="btn btn-sm btn-primary") Join the party
 
 .text-center(ng-hide="vm.games.length>0")
     h3 There are no games for you to join right now. Come back later.

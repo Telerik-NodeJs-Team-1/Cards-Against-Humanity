@@ -22,6 +22,15 @@
             }, function(){
                 notifier.error('Unable to create game');
             });
+
+        vm.joinGame = function(gameId){
+            var currentUsername = identity.currentUser.username;
+            games
+                .joinGame(gameId, currentUsername)
+                .then(function(){
+                    notifier.success('You successfully joined this game')
+                });
+        };
     };
 
     angular

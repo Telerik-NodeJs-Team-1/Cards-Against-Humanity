@@ -4,11 +4,16 @@ var gameSchema = new mongoose.Schema({
     name: String,
     creator: String,
     participants: [String],
-    currentBlackCard: String,
+    currentBlackCard: mongoose.Schema.Types.ObjectId,
     currentWhiteCards: [String],
     currentCzar: String,
     currentRound: Number,
-    timeLeftFromCurrentRound: Number
+    timeLeftFromCurrentRound: Number,
+    currentCzarCards:[String],
+    currentUserCards: [{
+        username: { type: String },
+        cards: [String]
+    }]
 });
 
 var Game = mongoose.model('Game', gameSchema);

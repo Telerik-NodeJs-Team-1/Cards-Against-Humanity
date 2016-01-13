@@ -1,0 +1,22 @@
+.navbar-right(ng-controller="LoginController")
+    if !user
+        form.navbar-form
+            .form-group
+                input.form-control(type="text", placeholder="Username", ng-model="user.username")
+                input.form-control(type="password", placeholder="Password", ng-model="user.password")
+            a.btn.btn-default(href="/" ng-click="login(user)") Log In
+            a.btn.btn-default(href="/identity/signup") Sign Up
+
+    ul.nav.navbar-nav.navbar-right
+        li.dropdown
+            if user
+                a.dropdown-toggle(href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
+                    span.caret
+            ul.dropdown-menu
+                if user && user.roles.indexOf('admin') > 0
+                    li
+                        a(href="/identity/users") Users
+                li
+                    a(href="/identity/profile") Profile
+                li
+                    a(href="/" ng-click="logout()") Sign Out
