@@ -47,8 +47,23 @@ var loadMyCardsPage = function(req, res){
 };
 
 var loadPendingCardsPage = function (req, res) {
-    PendingCard.find({status: 'Pending'}).exec(function(err, collection){
-       res.render('pending-cards', {user: req.user, cards: collection});
+    var page = +req.params.page || 1;
+    var pages;
+    if(page > 1){
+        pages = [page - 1, page, page + 1];
+    } else {
+        pages = [page, page + 1, page + 2];
+    }
+
+    var query = {status: 'Pending'};
+    var byType = req.query.type;
+
+    if(byType == 'black' || byType == 'white') {
+        query.type = byType;
+    }
+
+    PendingCard.paginate(query, { page: page, limit: 10 }, function(err, collection) {
+        res.render('pending-cards', {user: req.user, cards: collection.docs, query: '?type=' + byType, pages: pages});
         res.end();
     });
 };

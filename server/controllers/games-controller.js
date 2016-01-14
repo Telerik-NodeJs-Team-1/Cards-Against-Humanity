@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     BlackCard = mongoose.model('BlackCard'),
     WhiteCard = mongoose.model('WhiteCard'),
-    auth = require('../config/auth');
+    auth = require('../config/auth'),
+    UserStats = mongoose.model('UserStat');
 
 var createGame = function createGame(req, res){
     var newGame = req.body;
@@ -51,6 +52,16 @@ var createGame = function createGame(req, res){
                     return;
                 }
 
+                UserStats.findOne({username: req.user.username}).exec(function(err, stats){
+                    if(stats) {
+                        stats.startedGames += 1;
+                        stats.save();
+                    } else {
+                        UserStats.create({username: req.user.username, startedGames: 1, endedGames: 0});
+                    }
+                });
+
+
                 res.status(201);
                 res.redirect('/games/details/' + game._id);
             })
@@ -61,12 +72,22 @@ var createGame = function createGame(req, res){
 var joinGame = function(req, res){
     var gameId = req.params.id;
     var username = req.user.username;
+
     Game.findById(gameId, function(error, game){
         if(error){
             res.status(304);
             res.end();
             return;
         }
+
+        UserStats.findOne({username: username}).exec(function(err, stats){
+            if(stats) {
+                stats.startedGames += 1;
+                stats.save();
+            } else {
+                UserStats.create({username: username, startedGames: 1, endedGames: 0});
+            }
+        });
 
         if(game.participants.indexOf(username) < 0) {
             game.participants.push(username);
@@ -212,6 +233,12 @@ var checkCzarCardsAgainstUserCards = function checkCzarCardsAgainstUserCards(cza
             User.findOne({username: winner}, function(error, user){
                 user.points = user.points + 1;
                 user.save();
+
+                if(user.points == 5) {
+                    UserStats.findOne({username: winner}).exec(function(err, stats){
+                       stats.endedGames += 1;
+                    });
+                }
             });
         }
     }

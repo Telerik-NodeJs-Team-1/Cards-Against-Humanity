@@ -2,26 +2,43 @@ extend includes/layout
 block main-content
     .row
         .col-md-10.col-md-offset-1
-            table.table.table-condensed.table-striped.table-responsive
-                thead
-                    tr
-                        th Type
-                        th Text
-                        th ?Cards required
-                tbody
-                    for card in cards
+            .btn-group.btn-group-justified
+                a.btn.btn-default(href='cards/pending/1?type=white') White
+                a.btn.btn-default(href='cards/pending/1?type=undefined') ___
+                a.btn.btn-default(href='cards/pending/1?type=black') Black
+            ul.pagination
+                li
+                    a(href='cards/pending/1#{query}', aria-label='First')
+                        span(aria-hidden='true') «
+                for pageNumber in pages
+                    li
+                        a(href="cards/pending/#{pageNumber}#{query}")= pageNumber
+
+    .row
+        .col-md-10.col-md-offset-1
+            if cards.length
+                table.table.table-condensed.table-striped.table-responsive
+                    thead
                         tr
-                            td= card.type
-                            td= card.text
-                            td= card.blankSpaces
-                            td
-                                form(method="POST", action="api/update")
-                                    input(type="hidden", name="_id", value=card.id)
-                                    input(type="hidden", name="status", value="Accepted")
-                                    button(type="submit")
-                                        span.glyphicon.glyphicon-ok
-                                form(method="POST", action="api/update")
-                                    input(type="hidden", name="_id", value=card.id)
-                                    input(type="hidden", name="status", value="Rejected")
-                                    button(type="submit")
-                                        span.glyphicon.glyphicon-remove
+                            th Type
+                            th Text
+                            th ?Cards required
+                    tbody
+                        for card in cards
+                            tr
+                                td= card.type
+                                td= card.text
+                                td= card.blankSpaces
+                                td
+                                    form(method="POST", action="api/update")
+                                        input(type="hidden", name="_id", value=card.id)
+                                        input(type="hidden", name="status", value="Accepted")
+                                        button(type="submit").pending-update-green
+                                            span.glyphicon.glyphicon-ok
+                                    form(method="POST", action="api/update")
+                                        input(type="hidden", name="_id", value=card.id)
+                                        input(type="hidden", name="status", value="Rejected")
+                                        button(type="submit").pending-update-red
+                                            span.glyphicon.glyphicon-remove
+            else
+                h1 nah... no cards here

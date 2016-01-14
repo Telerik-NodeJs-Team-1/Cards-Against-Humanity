@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
+
 var pendingCardSchema = new mongoose.Schema({
     type: String,
     text: String,
@@ -6,6 +8,8 @@ var pendingCardSchema = new mongoose.Schema({
     status: String,
     byUser: String
 });
+
+pendingCardSchema.plugin(mongoosePaginate);
 
 var PendingCard = mongoose.model('PendingCard', pendingCardSchema);
 
