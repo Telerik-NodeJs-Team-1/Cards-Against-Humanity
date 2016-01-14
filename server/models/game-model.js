@@ -4,6 +4,7 @@ var gameSchema = new mongoose.Schema({
     name: String,
     creator: String,
     participants: [String],
+    maxPlayers: Number,
     currentBlackCard: mongoose.Schema.Types.ObjectId,
     currentWhiteCards: [String],
     currentCzar: String,

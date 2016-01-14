@@ -10,6 +10,25 @@ var mongoose = require('mongoose'),
 
 var createGame = function createGame(req, res){
     var newGame = req.body;
+    var errorMessages = '';
+
+    if(newGame.name.length < 3){
+        errorMessages += 'Game name must be at least 3 symbols long';
+    }
+
+    if(newGame.maxPlayers < 4 || newGame.maxPlayers > 10){
+        errorMessages += 'Game max players must be between 4 and 10 inclusive';
+    }
+
+    if(errorMessages.length > 0) {
+        res.render('create-game', {
+            user: req.user,
+            errors: errorMessages
+        });
+
+        return;
+    }
+
     newGame.creator = req.user.username;
     newGame.currentRound = 1;
     newGame.timeLeftFromCurrentRound = 120;

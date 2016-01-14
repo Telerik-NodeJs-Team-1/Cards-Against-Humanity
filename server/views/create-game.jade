@@ -1,5 +1,7 @@
 extend includes/layout
 block main-content
+    if errors
+        .alert.alert-danger(style="width:700px!important;margin-left:auto;margin-right:auto") #{errors}
     .create-game-container.well
         form.form-horizontal(action="/games/create", method="post")
             fieldset
@@ -8,11 +10,11 @@ block main-content
                 .form-group
                     label.col-lg-3.control-label(for='inputName') Name
                     .col-lg-9
-                        input#inputName.form-control(type='text', placeholder='Name' name="name")
+                        input#inputName.form-control(type='text', placeholder='Name' name="name" required="required")
                 .form-group
                     label.col-lg-3.control-label(for='inputPlayersNumber') Max Players
                     .col-lg-9
-                        input#inputPlayersNumber.form-control(type='number' min="4" max="10" value="4" name="maxPlayers")
+                        input#inputPlayersNumber.form-control(type='number' min="4" max="10" value="4" name="maxPlayers" required="required")
                 hr
                 div(style="margin-left:20px")
                     button(class="btn btn-primary") Create
