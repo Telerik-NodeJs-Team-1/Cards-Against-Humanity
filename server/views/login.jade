@@ -2,6 +2,8 @@
     if !user
         form.navbar-form(action="/identity/login", method="post")
             .form-group
+                if errors
+                    .alert.alert-danger.form-group(style="line-height:20px;display:inline-block!important;padding:6px!important; margin-right:10px") #{errors}
                 input.form-control(type="text", placeholder="Username", name="username")
                 input.form-control(type="password", placeholder="Password", name="password")
             button.btn.btn-default Log In

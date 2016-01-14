@@ -1,11 +1,24 @@
 var passport = require('passport');
 
 module.exports = {
-    login: function(req, res, next) {
+    login: function(req, res) {
         var auth = passport.authenticate('local', function(err, user) {
-            if (err) return next(err);
+            var errorsMessage = '';
+
+            if(err) {
+                errorsMessage += 'Could not fetch user';
+            }
+
             if (!user) {
-                res.send({success: false});
+                errorsMessage += 'Incorrect login data';
+            }
+
+            if(errorsMessage.length > 0){
+                res.render('home', {
+                    errors: errorsMessage
+                });
+
+                return;
             }
 
             req.logIn(user, function(err) {
@@ -16,7 +29,7 @@ module.exports = {
             res.end();
         });
 
-        auth(req, res, next);
+        auth(req, res);
     },
     logout: function(req, res, next) {
         req.logout();
