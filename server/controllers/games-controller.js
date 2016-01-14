@@ -77,6 +77,25 @@ var joinGame = function(req, res){
     });
 };
 
+var leaveGame = function leaveGame(req, res){
+    var gameId = req.params.id;
+    var username = req.user.username;
+    Game.findById(gameId, function(error, game){
+        if(error){
+            res.status(304);
+            res.end();
+            return;
+        }
+
+        if(game.participants.indexOf(username) > 0) {
+            game.participants.splice(game.participants.indexOf(username), 1);
+            game.save();
+        }
+
+        res.redirect('/games/available');
+    });
+};
+
 var getAllGames = function getAllGames(req, res){
     Game.find({}, function(error, games){
         if(error){
@@ -133,7 +152,6 @@ var getById = function getById(req, res){
         var user = req.user;
         var gameCopy = Object.assign({}, game);
         gameCopy.currentUser = user;
-        console.log(gameCopy);
         res.send(JSON.stringify(gameCopy));
         res.end();
     });
@@ -263,7 +281,8 @@ module.exports = function(){
         getById: getById,
         joinGame: joinGame,
         registerCzarCards: registerCzarCards,
-        registerUserCards: registerUserCards
+        registerUserCards: registerUserCards,
+        leaveGame: leaveGame
     };
 
     return controller;
