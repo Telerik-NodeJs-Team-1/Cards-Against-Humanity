@@ -10,8 +10,8 @@ router.post('/login', auth.login);
 router.post('/logout', auth.logout);
 router.get('/signup', controller.showRegisterForm);
 router.post('/users', controller.createUser);
+router.post('/update', auth.isAuthenticated, controller.updateUser);
 router.get('/users', auth.isInRole('admin'), controller.getAllUsers);
-router.put('/users', auth.isAuthenticated, controller.updateUser);
 router.get('/profile', auth.isAuthenticated, controller.showProfile);
 router.get('/profile/stats', auth.isAuthenticated, controller.getStats);
 

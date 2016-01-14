@@ -1,11 +1,15 @@
 extend includes/layout
 block main-content
+    h1.text-center
+        strong #{user.firstName + ' ' + user.lastName}
+    h2.text-center (#{user.username})
+    hr
     .demo-section.k-content.wide
         #chart-profile-page
 
     .container(style="width:700px!important")
         .well
-            form.form-horizontal(name="profileForm" action="/api/users/update" method="post")
+            form.form-horizontal(name="profileForm" action="/identity/update" method="post")
                 fieldset
                     legend
                         strong Update your information

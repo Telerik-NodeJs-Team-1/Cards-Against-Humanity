@@ -67,7 +67,10 @@ module.exports = function() {
                     console.log('Users could not be loaded: ' + err);
                 }
 
-                res.send(collection);
+                res.render('all-users', {
+                    user: req.user,
+                    users: collection
+                });
             })
         },
         getStats: function(req, res){

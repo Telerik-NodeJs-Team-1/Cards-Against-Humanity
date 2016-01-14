@@ -14,7 +14,7 @@ form(action="identity/logout" method="post")
                 a.dropdown-toggle(style="margin-right:50px" href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
                     span.caret
                 ul.dropdown-menu(style="margin-right:50px")
-                    if user && user.roles.indexOf('admin') > 0
+                    if user && user.roles.indexOf('admin') > -1
                         li
                             a(href="/identity/users") Users
                     li

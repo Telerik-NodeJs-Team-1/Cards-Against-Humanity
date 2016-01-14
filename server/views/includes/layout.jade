@@ -26,26 +26,27 @@ html
                     ul.nav.navbar-nav
                         li
                             a(href="/home") Home
-                        li
-                            a(href="/games/create") Create Game
-                        li
-                            a(href="/games/available") Available Games
-                        li
-                            a(href="/games/started") My Games
-                        li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
-                                | Cards
-                                span.caret
-                            ul.dropdown-menu(role='menu')
-                                li
-                                    a(href='/cards/mine') My cards
-                                li.divider
-                                li
-                                    a(href='/cards/create') Create
-                                if user && user.roles.indexOf('admin') > -1
+                        if user
+                            li
+                                a(href="/games/create") Create Game
+                            li
+                                a(href="/games/available") Available Games
+                            li
+                                a(href="/games/started") My Games
+                            li.dropdown
+                                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                                    | Cards
+                                    span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='/cards/mine') My cards
                                     li.divider
                                     li
-                                        a(href='/cards/pending') Pending
+                                        a(href='/cards/create') Create
+                                    if user && user.roles.indexOf('admin') > -1
+                                        li.divider
+                                        li
+                                            a(href='/cards/pending') Pending
         block main-content
         footer
             p.text-center
