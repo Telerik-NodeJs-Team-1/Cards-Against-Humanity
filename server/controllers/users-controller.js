@@ -24,7 +24,34 @@ module.exports = function() {
         },
 
         createUser: function(req, res, next) {
+            var errorsMessage = '';
             var newUserData = req.body;
+
+            if(newUserData.password.length < 6){
+                errorsMessage += 'Password is required and must be at least 6 symbols.';
+            }
+
+            if(newUserData.username.length < 6){
+                errorsMessage += 'Username is required and must be at least 6 symbols.';
+            }
+
+            if(newUserData.firstName < 1){
+                errorsMessage += 'First name is required.';
+            }
+
+            if(newUserData.lastName < 1){
+                errorsMessage += 'Last name is required.';
+            }
+
+            if(errorsMessage.length > 0) {
+                res.render('sign-up', {
+                    user: req.user,
+                    errors: errorsMessage
+                });
+
+                return;
+            }
+
             newUserData.salt = encryption.generateSalt();
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             newUserData.points = 0;
