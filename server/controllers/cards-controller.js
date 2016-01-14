@@ -3,7 +3,8 @@
 var mongoose = require('mongoose'),
     BlackCard = mongoose.model('BlackCard'),
     WhiteCard = mongoose.model('WhiteCard'),
-    PendingCard = mongoose.model('PendingCard');
+    PendingCard = mongoose.model('PendingCard'),
+    xssFilters = require('xss-filters');
 
 var getBlackCardById = function(req, res){
   BlackCard.findById(req.params.id, function(error, card){
@@ -21,6 +22,7 @@ var getBlackCardById = function(req, res){
 
 var createCard = function createGame(req, res) {
     var pendingCard = req.body;
+    pendingCard.text = xssFilters.inHTMLData(pendingCard.text);
     pendingCard.status = "Pending";
     pendingCard.byUser = req.user._id;
 

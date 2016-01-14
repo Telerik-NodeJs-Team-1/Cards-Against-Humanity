@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
     BlackCard = mongoose.model('BlackCard'),
     WhiteCard = mongoose.model('WhiteCard'),
     auth = require('../config/auth'),
-    UserStats = mongoose.model('UserStat');
+    UserStats = mongoose.model('UserStat'),
+    xssFilters = require('xss-filters');
 
 var createGame = function createGame(req, res){
     var newGame = req.body;
@@ -29,6 +30,7 @@ var createGame = function createGame(req, res){
         return;
     }
 
+    newGame.name = xssFilters.inHTMLData(newGame.name);
     newGame.creator = req.user.username;
     newGame.currentRound = 1;
     newGame.timeLeftFromCurrentRound = 120;

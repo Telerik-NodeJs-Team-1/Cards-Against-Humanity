@@ -5,7 +5,8 @@ block main-content
             each game in data
                 div
                     .jumbotron.centered-div.text-center.row
-                        strong.col-lg-5(style="font-size:25px") #{game.name}
+                        strong.col-lg-5(style="font-size:25px")
+                            = game.name
                         form(action="/games/#{game._id}", method="post")
                             button.col-lg-5(class="btn btn btn-primary") Join the party
 

@@ -23,6 +23,7 @@
     "npm": "^3.5.3",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "stylus": "^0.53.0"
+    "stylus": "^0.53.0",
+    "xss-filters": "^1.2.6"
   }
 }

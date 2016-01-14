@@ -2,7 +2,8 @@
 
 var encryption = require('../utilities/encryption');
 var User = require('mongoose').model('User'),
-    UserStats = require('mongoose').model('UserStat');
+    UserStats = require('mongoose').model('UserStat'),
+    xssFilters = require('xss-filters');
 
 module.exports = function() {
     var controller = {
@@ -26,6 +27,8 @@ module.exports = function() {
         createUser: function(req, res, next) {
             var errorsMessage = '';
             var newUserData = req.body;
+            newUserData.username = xssFilters.inHTMLData(newUserData.username);
+            newUserData.password = xssFilters.inHTMLData(newUserData.password);
 
             if(newUserData.password.length < 6){
                 errorsMessage += 'Password is required and must be at least 6 symbols.';
