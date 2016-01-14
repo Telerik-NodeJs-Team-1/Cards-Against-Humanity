@@ -13,7 +13,8 @@ form(action="identity/logout" method="post")
     ul.nav.navbar-nav.navbar-right
         li.dropdown
             if user
-                a.dropdown-toggle(style="margin-right:50px" href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}
+                a.dropdown-toggle(style="margin-right:50px" href="", data-toggle="dropdown") #{user.firstName + ' ' + user.lastName}&nbsp;
+                    span.badge(style="background-color:#ddd!important;height:20px;line-height:15px;") #{user.points} points total
                     span.caret
                 ul.dropdown-menu(style="margin-right:50px")
                     if user && user.roles.indexOf('admin') > -1

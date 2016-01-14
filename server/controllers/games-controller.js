@@ -305,11 +305,9 @@ setInterval(function(){
                         elem.timeLeftFromCurrentRound = Number(elem.timeLeftFromCurrentRound) - 1;
                         elem.save();
                     } else {
-                        var randomNextCzarIndex = Math.floor(Math.random() * (elem.participants.length + 1));
-                        var nextCzar = elem.participants[randomNextCzarIndex];
-
                         BlackCard.find({}, function (error, blackCards) {
-                            elem.currentCzar = nextCzar;
+                            var randomNextCzarIndex = Math.floor(Math.random() * (elem.participants.length + 1));
+                            elem.currentCzar = elem.participants[randomNextCzarIndex];
                             elem.timeLeftFromCurrentRound = 120;
                             elem.currentRound = Number(elem.currentRound) + 1;
 

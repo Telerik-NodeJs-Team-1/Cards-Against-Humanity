@@ -192,6 +192,9 @@ footer p {
 .pending-update-green:hover {
   color: #008000;
 }
+.badge:hover {
+  color: #d9230f;
+}
 @-moz-keyframes hvr-back-pulse {
   50% {
     background-color: rgba(32,152,209,0.75);
