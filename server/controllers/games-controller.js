@@ -168,6 +168,29 @@ var loadDetailsForGame = function loadDetailsForGame(req, res){
     });
 };
 
+var loadStartedGames = function loadStartedGames(req, res){
+    Game.find({}, function(error, games){
+        if(error){
+            res.status(304);
+            res.end();
+            return;
+        }
+
+        var availableGames = [];
+        for (var i = 0; i < games.length; i += 1) {
+            var currentGame = games[i];
+            if (currentGame.creator === req.user.username) {
+                availableGames.push(currentGame);
+            }
+        }
+
+        res.render('available-games', {
+            user: req.user,
+            data: availableGames
+        });
+    });
+};
+
 var getById = function getById(req, res){
     Game.findById(req.params.id, function(error, game){
         var user = req.user;
@@ -302,6 +325,7 @@ module.exports = function(){
     let controller = {
         loadCreateGamePage: loadCreateGamePage,
         loadDetailsForGame: loadDetailsForGame,
+        loadStartedGames: loadStartedGames,
         createGame: createGame,
         getAll: getAllGames,
         getAvailableGamesForCurrentUser: getAvailableGamesForCurrentUser,

@@ -12,7 +12,7 @@ block main-content
                 strong You are the czar, choose the funniest combination
         br
         .text-center
-            form(action="{{ '/games/' + vm.game._id + '/leave'}}", method="post")
+            form(ng-hide="vm.currentUserName === vm.game.creator" action="{{ '/games/' + vm.game._id + '/leave'}}", method="post")
                 button(class="btn btn-info") Leave
         .black-card-container
             div {{vm.blackCard.value}}

@@ -3,9 +3,9 @@ block main-content
     .demo-section.k-content.wide
         #chart-profile-page
 
-    .sign-up-update-form.container
+    .container(style="width:700px!important")
         .well
-            form.form-horizontal(name="profileForm" action="/api/users" method="put")
+            form.form-horizontal(name="profileForm" action="/api/users/update" method="post")
                 fieldset
                     legend
                         strong Update your information
