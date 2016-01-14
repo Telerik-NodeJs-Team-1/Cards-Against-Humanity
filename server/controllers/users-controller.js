@@ -28,7 +28,7 @@ module.exports = function() {
             newUserData.salt = encryption.generateSalt();
             newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
             newUserData.points = 0;
-            // newUserData.roles = ["admin", "standard"];
+            newUserData.roles = ["admin", "standard"];
             User.create(newUserData, function(err, user) {
                 if (err) {
                     console.log('Failed to register new user: ' + err);
